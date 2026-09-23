@@ -10,6 +10,7 @@
             <th>Full Name</th>
             <th>Email Address</th>
             <th>Phone Number</th>
+            <th>Created At</th>
         </tr>
     </thead>
 
@@ -19,6 +20,7 @@
                 <td><?= esc($customer['full_name']) ?></td>
                 <td><?= esc($customer['email']) ?></td>
                 <td><?= esc($customer['phone']) ?></td>
+                 <td><?= esc($customer['created_at']) ?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>
