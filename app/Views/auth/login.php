@@ -2,13 +2,19 @@
 
 <h1><?= esc($title) ?></h1>
 
+<?php if (session()->getFlashdata('error')): ?>
+    <p style="color: red;">
+        <?= esc(session()->getFlashdata('error')) ?>
+    </p>
+<?php endif; ?>
+
 <?php if (isset($validation)): ?>
     <div style="color: red;">
         <?= $validation->listErrors() ?>
     </div>
 <?php endif; ?>
 
-<form action="<?= site_url('users') ?>" method="post">
+<form action="<?= site_url('login') ?>" method="post">
     <?= csrf_field() ?>
 
     <div>
@@ -18,18 +24,7 @@
         id="username"
         name="username"
         value="<?= esc(old('username')) ?>"
-    >
-</div>
-
-<br>
-
-   <div>
-    <label for="full_name">Full Name</label>
-    <input
-        type="text"
-        id="full_name"
-        name="full_name"
-        value="<?= esc(old('full_name')) ?>"
+        autocomplete="username"
     >
 </div>
 
@@ -41,17 +36,13 @@
         type="password"
         id="password"
         name="password"
-        autocomplete="new-password"
+        autocomplete="current-password"
     >
 </div>
 
 <br>
 
-    <button type="submit">Save User</button>
+    <button type="submit">Login</button>
 </form>
-
-<p>
-    <a href="<?= site_url('users') ?>">Back to User Accounts</a>
-</p>
 
 <?= view('templates/footer') ?>
